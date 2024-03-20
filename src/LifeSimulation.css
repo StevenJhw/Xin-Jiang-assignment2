@@ -2,22 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* 将内容对齐到顶部 */
+  justify-content: flex-start; /* Align content to the top */
   height: 100vh;
-  padding-top: 20px; /* 在顶部添加内边距 */
+  padding-top: 20px; /* Add padding at the top */
 }
 
 .input-fields {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px; /* 调整为适当的值，以使输入框位于顶部 */
-  top: 20px; /* 调整为适当的值，以使输入框位于顶部 */
+  margin-bottom: 20px; /* Adjust to appropriate value to position input fields at the top */
+  top: 20px; /* Adjust to appropriate value to position input fields at the top */
 }
 
 .grid-format {
-  /* margin-top: 20px; */
-  text-align: center; /* 让其内部内容水平居中 */
+  text-align: center; /* Center content horizontally */
 }
 
 .grid {

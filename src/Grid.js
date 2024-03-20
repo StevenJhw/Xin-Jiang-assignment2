@@ -7,50 +7,50 @@ const Grid = ({ rows, cols, cellStates, handleCellClick }) => {
   const [cntCellDeadCum, setCellDeadCum] = useState([[]]); 
 
 
-  const [autoplay, setAutoplay] = useState(false); // 用于跟踪自动播放的状态变量
-  const [longerLastingMode, setLongerLastingMode] = useState(false); // 新增长寿模式状态
+  const [autoplay, setAutoplay] = useState(false); // Variable to track autoplay state
+  const [longerLastingMode, setLongerLastingMode] = useState(false); // Add longevity mode state
 
-  // 切换自动播放的函数
+  // Function to toggle autoplay
   const toggleAutoplay = () => {
     setAutoplay(!autoplay);
   };
-   // 切换长寿模式
+   // Toggle longevity mode
    const toggleLongerLastingMode = () => {
     setLongerLastingMode(!longerLastingMode);
   };
 
-  // 使用 useEffect 钩子来启动或停止自动播放
+// Use the useEffect hook to start or stop autoplay
   useEffect(() => {
     let intervalId;
     if (autoplay) {
-      // 如果自动播放激活，则设置定时器来定期调用前进模拟的函数
+      // Set a timer to periodically call the function to advance the simulation if autoplay is activated
       intervalId = setInterval(handleStepSimulation, 100);
     } else {
-      // 如果自动播放停止，则清除定时器
+     // Clear the timer if autoplay is stopped
       clearInterval(intervalId);
     }
 
-    // 返回清除定时器的函数，以确保在组件卸载时清除定时器
+    // Return a function to clear the timer to ensure it's cleared when the component unmounts
     return () => clearInterval(intervalId);
-  }, [autoplay, grid]); // 添加所有依赖项
+  }, [autoplay, grid]); // Add all dependencies
 
 
-  // 初始化网格状态，创建空白的网格
+  // Initialize grid state, create a blank grid
   useEffect(() => {
     setGrid(initializeGrid());
   }, [rows, cols]);
 
-  // 更新网格状态，处理单元格点击事件
+  // Update grid state, handle cell click event
   const updateCell = (row, col) => {
     const newGrid = [...grid];
-    newGrid[row][col] = !newGrid[row][col]; // 切换单元格状态
+    newGrid[row][col] = !newGrid[row][col]; // Toggle cell state
     setGrid(newGrid);
     setLivingCells(countLivingCells(newGrid)); 
 
-   // 创建 newCumGrid 的副本
+   // Create a copy of newCumGrid
     const newCumGrid = [...cntCellDeadCum];
 
-    // 根据条件更新 newCumGrid 的值
+    // Update the value of newCumGrid based on conditions
     if (newGrid[row][col] === true) {
     newCumGrid[row][col] = 0;
     } else {
@@ -60,7 +60,7 @@ const Grid = ({ rows, cols, cellStates, handleCellClick }) => {
 
   };
 
-  // 计算当前存活细胞数量
+  // Calculate the current number of live cells
   const countLivingCells = (grid) => {
     let count = 0;
     grid.forEach(row => {
@@ -73,19 +73,19 @@ const Grid = ({ rows, cols, cellStates, handleCellClick }) => {
     return count;
   };
 
-  // 修改初始化网格的函数以实现集群设置
+  // Modify the function initializing the grid to implement cluster setup
 function initializeGrid() {
   const newGrid = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => false)
   );
 
-  // 确定集群的数量和位置
-  const numClusters = Math.floor(rows * cols * 0.05); // 集群数量为网格大小的5%
+  // Determine the number and positions of clusters
+  const numClusters = Math.floor(rows * cols * 0.05); // The number of clusters is 5% of the grid size
   for (let i = 0; i < numClusters; i++) {
     const clusterRow = Math.floor(Math.random() * rows);
     const clusterCol = Math.floor(Math.random() * cols);
-    newGrid[clusterRow][clusterCol] = true; // 将集群中心设置为活细胞
-    // 在集群周围生成更多的活细胞
+    newGrid[clusterRow][clusterCol] = true; // Set the center of the cluster as a live cell
+    // Generate more live cells around the cluster
     for (let dRow = -2; dRow <= 2; dRow++) {
       for (let dCol = -2; dCol <= 2; dCol++) {
         const neighborRow = clusterRow + dRow;
@@ -111,28 +111,28 @@ function initializeGrid() {
   const newCntCellDeadCum = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => 1)
   );
-  // 遍历 newGrid 的所有元素
+  // Traverse all elements of newGrid
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      // 如果 newGrid[i][j] 的值为真（即细胞存活），将相应位置的 newCntCellDeadCum 设置为0
+      // If the value of newGrid[i][j] is true (i.e., the cell is alive), set the corresponding position's newCntCellDeadCum to 0
       if (newGrid[i][j] === true) {
         newCntCellDeadCum[i][j] = 0;
       }
     }
   }
-  // 设置新的 cntCellDeadCum 数组
+  // Set a new cntCellDeadCum array
   setCellDeadCum(newCntCellDeadCum);
 
   return newGrid;
 }
 
 
-  // 重置网格
+  // Reset the grid
   const handleReset = () => {
     const newGrid = initializeGrid();
     setGrid(newGrid);
   };
-// 进行单步模拟
+// Perform a single-step simulation
 const handleStepSimulation = () => {
     const newGrid = [];
   
@@ -142,16 +142,16 @@ const handleStepSimulation = () => {
       for (let j = 0; j < cols; j++) {
         const neighbors = countAliveNeighbors(i, j);
   
-        // 根据规则更新细胞状态
+        // Update cell states according to the rules
         if (grid[i][j]) {
           if (neighbors < 2 || neighbors > 3) {
-            newRow.push(false); // 规则 1 和 3：少于2个邻居或多于3个邻居，细胞死亡
+            newRow.push(false); // Rule 1 and 3: If a cell has fewer than 2 neighbors or more than 3 neighbors, it dies
           } else {
-            newRow.push(true); // 规则 2：2 或 3 个邻居，细胞继续存活
+            newRow.push(true); // Rule 2: If a cell has 2 or 3 neighbors, it continues to survive
           }
         } else {
           if (neighbors === 3 || (longerLastingMode && neighbors >= 1)) {
-            newRow.push(true); // 规则 4：3 个邻居，死细胞复活；或者长寿模式下有邻居，细胞继续存活
+            newRow.push(true); // Rule 4: If a dead cell has 3 neighbors, it revives; or if a cell has neighbors in longevity mode, it continues to survive
           } else {
             newRow.push(false);
           }
@@ -167,13 +167,13 @@ const handleStepSimulation = () => {
 
     // newCumGrid heatmap
     const newCumGrid = [...cntCellDeadCum];
-    // 遍历原始数组
+    // Traverse the original array
     for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
         if (newGrid[i][j] === true) {
-        newCumGrid[i][j] = 0; // 如果newGrid[i][j]为true，则将对应位置的newCumGrid设置为0
+        newCumGrid[i][j] = 0; // If newGrid[i][j] is true, set the corresponding position's newCumGrid to 0
         } else {
-        // 如果newGrid[i][j]为false，则将对应位置的cntCellDeadCum加1
+        // If newGrid[i][j] is false, increment the corresponding position's cntCellDeadCum by 1
         newCumGrid[i][j] = cntCellDeadCum[i][j] + 1;
         }
     }
@@ -181,14 +181,14 @@ const handleStepSimulation = () => {
     setCellDeadCum(newCumGrid)
   };
   
-  // 计算细胞周围的活细胞数量
+  // Calculate the number of live cells around a cell
   const countAliveNeighbors = (row, col) => {
     let count = 0;
   
     for (let i = row - 1; i <= row + 1; i++) {
       for (let j = col - 1; j <= col + 1; j++) {
         if (i !== row || j !== col) {
-          // 检查边界条件以避免越界访问
+          // Check boundary conditions to avoid out-of-bounds access
           if (i >= 0 && i < rows && j >= 0 && j < cols && grid[i][j]) {
             count++;
           }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Cell = ({ alive, cntCellDeadCum, onClick }) => {
-  // 定义获取单元格颜色的函数
+  // Function to get the color of the cell
   function getColor(cntCellDeadCum) {
     const position = Math.min(cntCellDeadCum / 10, 1);
     const visibleSpectrum = {
@@ -23,10 +23,8 @@ const Cell = ({ alive, cntCellDeadCum, onClick }) => {
     return visibleSpectrum[Object.keys(visibleSpectrum)[Object.keys(visibleSpectrum).length - 1]];
   }
 
-  // 获取单元格的颜色
+  // Get the color of the cell
   const cellColor = getColor(cntCellDeadCum);
-
-  
 
   return (
     <div
