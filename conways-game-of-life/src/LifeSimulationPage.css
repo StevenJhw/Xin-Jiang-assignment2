@@ -1,0 +1,26 @@
+.hoverButton {
+    color: white;
+}
+
+.hoverButton:hover {
+    color: black;
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 601px) {
+    .container {
+        margin-top: 40px;
+    }
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
