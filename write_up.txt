@@ -1,0 +1,55 @@
+What were some challenges you faced while making this app? 
+
+During the app development, I encountered challenges with deployment, including
+selecting the appropriate cloud service provider, configuring servers,
+and troubleshooting network issues. Designing global and local variables
+also posed challenges, as I needed to carefully manage their scope and
+ensure proper data sharing across the application. These challenges
+required meticulous planning and technical expertise to overcome,
+ultimately leading to the successful development of the application.
+
+
+
+Given more time, what additional features, functional or design changes would you make
+
+With more time, I would focus on streamlining the codebase to make it more concise and maintainable. 
+Additionally, I would implement additional features aimed at enhancing user-friendliness, such as incorporating 
+intuitive navigation options, improving error handling for smoother user interactions, and adding more customization
+options to tailor the app experience to individual preferences. Furthermore, I would explore opportunities for 
+optimizing performance and scalability to ensure the app can accommodate future growth and usage demands effectively.
+
+
+What assumptions did you make while working on this assignment?
+
+While working on this assignment, I made the assumption that users would have basic familiarity with interactive 
+applications and would understand how to interact with buttons to engage with the game. Additionally, I assumed that
+users would be interested in learning more about the game through the provided introduction and would appreciate the 
+opportunity to interact with it through the "point and click" button functionality. These assumptions guided the design
+and implementation decisions to create a user-friendly and engaging experience for the target audience.
+
+
+
+How long did this assignment take to complete? (Obviously, this does not need to be a paragraph)
+~25h
+
+
+
+What bonus points 
+1.Clustered Setup:
+segment iterates to generate a specific number of "clusters" within a grid. Each cluster comprises a center
+point randomly positioned and marked as a living cell. Subsequently, additional living cells are randomly generated 
+around this central point within a specified range, effectively forming a cluster. The outcome is the creation of 
+several high-density areas of living cells within the grid, known as clusters, which are more likely to have living 
+cells at the start of the game compared to other regions.
+
+2.Autoplay Feature 
+3.Longer Lasting Cells
+
+
+
+
+
+Deliverables 
+Git: https://github.com/StevenJhw/Xin-Jiang-assignment2/tree/main
+Render:
+https://conways-game-of-life-u20t.onrender.com

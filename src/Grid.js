@@ -132,6 +132,8 @@ function initializeGrid() {
     const newGrid = initializeGrid();
     setGrid(newGrid);
   };
+
+  
 // Perform a single-step simulation
 const handleStepSimulation = () => {
     const newGrid = [];
@@ -221,7 +223,7 @@ const handleStepSimulation = () => {
         <button onClick={handleReset}>Reset</button>
         <button onClick={handleStepSimulation}>Next Step</button> 
          <button onClick={toggleAutoplay}>
-          {autoplay ? 'Stop' : 'Auto Start'}
+          {autoplay ? 'Auto Stop' : 'Auto Start'}
         </button>
         
         <div> <button onClick={toggleLongerLastingMode}>

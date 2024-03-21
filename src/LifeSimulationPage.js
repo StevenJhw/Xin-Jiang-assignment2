@@ -9,22 +9,32 @@ import './LifeSimulationPage.css'
 const LifeSimulationPage = () => {
   return (
     <div>
-      <AppBar position="static">
+       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Game of Life - Simulation
+            Game of Life - Home
           </Typography>
-          <Button color="inherit" className="hoverButton">
-            <Link to="/" className="link">Home</Link>
-          </Button>
-          <Button color="inherit" className="hoverButton">
-            <Link to="/LifeSimulationPage" className="link">Simulation</Link>
-          </Button>          
-          <Button color="inherit" className="hoverButton">
-            <Link to="/Credit" className="link" >About</Link>
-          </Button>
+          
+          <Link to="/" className="link">
+            <Button color="inherit" className="hoverButton">
+              Home
+            </Button>
+          </Link>
+
+           <Link to="/LifeSimulationPage" className="link" >
+              <Button color="inherit" className="hoverButton">
+                Simulation
+              </Button>    
+             </Link>     
+
+            <Link to="/Credit" className="link" >
+            <Button color="inherit" className="hoverButton">
+              About
+            </Button>
+            </Link>
         </Toolbar>
       </AppBar>
+      
       <Container>
         <LifeSimulation />
       </Container>

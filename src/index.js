@@ -1,6 +1,7 @@
 // index.js
 
 
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -33,8 +34,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-        <LifeSimulationProvider>
-    <RouterProvider router={router} />
+    <LifeSimulationProvider>
+      <RouterProvider router={router} />
     </LifeSimulationProvider>
   </React.StrictMode>
 );
