@@ -13,7 +13,7 @@ const HomePage = () => {
             Game of Life - Home
           </Typography>
             <Button color="inherit" className="hoverButton">
-              <Link to="/HomePage" className="link">Home</Link>
+              <Link to="/" className="link">Home</Link>
             </Button>
             <Button color="inherit" className="hoverButton">
               <Link to="/LifeSimulationPage" className="link" >Simulation</Link>

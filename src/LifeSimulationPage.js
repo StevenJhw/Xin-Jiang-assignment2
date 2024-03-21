@@ -15,7 +15,7 @@ const LifeSimulationPage = () => {
             Game of Life - Simulation
           </Typography>
           <Button color="inherit" className="hoverButton">
-            <Link to="/HomePage" className="link">Home</Link>
+            <Link to="/" className="link">Home</Link>
           </Button>
           <Button color="inherit" className="hoverButton">
             <Link to="/LifeSimulationPage" className="link">Simulation</Link>
