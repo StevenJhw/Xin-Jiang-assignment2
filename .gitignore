@@ -1,5 +1,5 @@
 # Ignore node_modules directory
 node_modules/
 
-# Ignore word.txt file
-word.txt
+# Ignore write_up.txt file
+write_up.txt
